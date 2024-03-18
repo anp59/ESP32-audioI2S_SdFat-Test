@@ -54,7 +54,7 @@ Audio audio;
 const char *playList[] = {
     "Test2/06 - Rockerrente_k.mp3",
     "Test2/25. Alvaro Soler - Sofia_k.m4a",
-    "Musik/Max Raabe/max raabe - das fräulein gerda.mp3",   // big picture
+    // "Musik/Max Raabe/max raabe - das fräulein gerda.mp3",   // big picture
     "Musik/André Rieu/Bal Du Siècle/03 Cielito Lindo.mp3",
     "/Musik1/Woodstock/Woodstock - The Love and Peace Generation - Disc 2/16 Mr. Tambourine Man.mp3",   // small picture
     "Musik/Max Raabe/max raabe - Ich fahr in meiner kleinen Limousine.mp3",
@@ -84,11 +84,9 @@ void playNext(int offset = 0) {
         i += offset;
         i = (lsz + i) % lsz;
         if (audio.connecttoFS(SD, playList[i]))
-            Serial.printf("\n** audio.connecttoFS - playList[%d] = %s\n", i,
-                          playList[i]);
+            Serial.printf("\n** audio.connecttoFS - playList[%d] = %s\n", i, playList[i]);
         else
-            log_e("audio.connecttoFS not successful- playList[%d] = %s\n", i,
-                  playList[i]);
+            log_e("audio.connecttoFS not successful- playList[%d] = %s\n", i, playList[i]);
     }
     else
         log_w("playList is empty");
@@ -106,7 +104,9 @@ void setup() {
     SD.begin(SD_CS);
     audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
     audio.setVolume(12);  // 0...21
+    
     log_i("Using %s...", USE_SDFAT ? "SdFat" : "FS");
+
     playNext();
 
 #if USE_SDFAT
