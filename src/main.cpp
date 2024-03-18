@@ -54,17 +54,21 @@ Audio audio;
 const char *playList[] = {
     "Test2/06 - Rockerrente_k.mp3",
     "Test2/25. Alvaro Soler - Sofia_k.m4a",
-    "Musik/Max Raabe/max raabe - das fräulein gerda.mp3",
+    "Musik/Max Raabe/max raabe - das fräulein gerda.mp3",   // big picture
+    "Musik/André Rieu/Bal Du Siècle/03 Cielito Lindo.mp3",
+    "/Musik1/Woodstock/Woodstock - The Love and Peace Generation - Disc 2/16 Mr. Tambourine Man.mp3",   // small picture
+    "Musik/Max Raabe/max raabe - Ich fahr in meiner kleinen Limousine.mp3",
+    "/Musik1/Helene/H. Fischer - So wie ich bin/07 - Hundert Prozent.mp3",  // jpg
+    "/Musik1/Helene/H. Fischer - So Nah Wie Du/05 - Hinter den Traenen.mp3",    /// big picture
     "Musik/André Rieu/Bal Du Siècle/01 Clavelitos.mp3",
     "Musik/André Rieu/Bal Du Siècle/02 España Cañi.mp3",
-    "Musik/André Rieu/Bal Du Siècle/03 Cielito Lindo.mp3",
     // "Musik/André Rieu/Bal Du Siècle/08 Moulin Rouge; Paris Canaille.mp3",
     // "Musik/André Rieu/Bal Du Siècle/06 Hava Nagila.mp3",
-    // "Musik/André Rieu/Bal Du Siècle/17 La Vie En Rose; Padam Padam; Sous Les
-    // Ponts De Paris.mp3", "Musik1/Deutschland/Ostrock/Silly - Best of Silly/01
-    // - Bye Bye.mp3", "Musik1/Deutschland/Ostrock/Silly - Best of Silly/11 -
-    // Instandbesetzt.mp3", "Musik1/Deutschland/Ostrock/Puhdys - SUPERillu/03 -
-    // He, John.mp3", "Musik1/Deutschland/Ostrock/Puhdys - SUPERillu/06 -
+    // "Musik/André Rieu/Bal Du Siècle/17 La Vie En Rose; Padam Padam; Sous Les Ponts De Paris.mp3",
+    "Musik1/Deutschland/Ostrock/Silly - Best of Silly/01 - Bye Bye.mp3",
+    "Musik1/Deutschland/Ostrock/Silly - Best of Silly/11 - Instandbesetzt.mp3", // small picture
+    "Musik1/Deutschland/Ostrock/Puhdys - SUPERillu/03 - He, John.mp3",  // big picture jpg
+    "/Musik/Ernst Mosch/Goldene Musik - Ernst Mosch Und Seinen Original Egerländer Musikanten.mp3", // big picture
     "Test2/01 - Bye Bye_k.mp3", 
     "Test2/03 - He, John_k.mp3"
 }; 
@@ -102,7 +106,7 @@ void setup() {
     SD.begin(SD_CS);
     audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
     audio.setVolume(12);  // 0...21
-    log_i("Using %s...", USE_SDFAT ? "SdFat" : "FS") ;
+    log_i("Using %s...", USE_SDFAT ? "SdFat" : "FS");
     playNext();
 
 #if USE_SDFAT
@@ -110,10 +114,10 @@ void setup() {
     File f1;
     File32 f2;
     f1.open(playList[4]);
-    Serial.println(f1.name());
+    log_e("%s", f1.name());
     f1.close();
     f2.open(playList[5]);
-    Serial.println(f2.name());
+    log_e("%s", f2.name());
     f2.close();
 #endif
 }
